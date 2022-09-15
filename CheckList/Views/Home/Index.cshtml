@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/CustomScripts/HomeControllerJS.js"></script>
+<br />
+<br />
+        <form ng-app="app" ng-controller="mainCtrl" name="myForm" >
+            <p>
+                Name:<br>
+                <input type="text" name="name" ng-model="name" required autocomplete="off" ng-keyup="checkUniqueName()" ng-minlength="4" ng-maxlength="32">
+                <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                    <span ng-show="myForm.name.$error.required">Name is required.</span>
+                    <span style="color:Red" ng-show="myForm.name.$dirty&&myForm.name.$error.minlength"> Minimum 4 Characters Required </span>
+                    <span style="color:Red" ng-show="myForm.name.$dirty&&myForm.name.$error.maxlength"> Maximum 32 Characters Required </span>
+                </span>
+            </p>
+
+            <p>
+                Type:<br>
+                <div mass-autocomplete>
+                    <input ng-model="dirty.value" name="type"
+                           mass-autocomplete-item="autocomplete_options" required title="This is my text, do not touch!" ng-minlength="4" ng-maxlength="32">
+
+                    <span style="color:red" ng-show="myForm.type.$dirty && myForm.type.$invalid">
+                        <span ng-show="myForm.type.$error.required">Type is required.</span>
+                        <span style="color:Red" ng-show="myForm.type.$dirty&&myForm.type.$error.minlength"> Minimum 4 Characters Required </span>
+                        <span style="color:Red" ng-show="myForm.type.$dirty&&myForm.type.$error.maxlength"> Maximum 32 Characters Required </span>
+                    </span>
+                </div>
+            </p>
+
+            <p>
+                <input type="submit" ng-disabled="!(isTypeValid && isNameValid)" ng-click="postForm()">
+
+            </p>
+
+        </form>
+
